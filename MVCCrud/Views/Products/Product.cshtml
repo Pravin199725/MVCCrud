@@ -1,0 +1,49 @@
+﻿@model cloudscribe.Pagination.Models.PagedResult<MVCCrud.Models.Domain.Product>
+
+@{
+}
+
+<h1>Products</h1>
+<br>
+
+<form method="get">
+    <button type="submit" class="btn btn-primary" asp-action="Add" asp-controller="Products">Add Products</button>
+</form>
+<br>
+
+<table class="table" id="pagination">
+    <thead>
+    <th>Id</th>
+    <th>Product Name</th>
+    <th>Category Id</th>
+    <th>Category Name</th>
+    <th>View</th>
+    </thead>
+    <tbody>
+        @foreach (var items in Model.Data)
+        {
+            <tr>
+                <td>@items.Id</td>
+                <td>@items.ProductName</td>
+                <td>@items.CategoryId</td>
+                <td>@items.CategoryName</td>
+                <td><a href="Products/View/@items.Id">View</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<cs-pager cs-paging-pagenumber="Model.PageNumber"
+          cs-paging-totalitems="Model.TotalItems"
+          cs-paging-pagesize="Model.PageSize"
+          cs-pagenumber-param="Pagenumber"
+          asp-controller="Products"
+          asp-action="Product"
+          cs-pager-li-current-class="page-item active"
+          cs-pager-li-other-class="page-item"
+          cs-pager-li-non-active-class="page-item disabled"
+          cs-pager-link-current-class="page-link"
+          cs-pager-link-other-class="page-link">
+
+</cs-pager>
+
+
